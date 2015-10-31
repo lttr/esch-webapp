@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>390</x>
+      <y>430</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>/ORM/
+*JPA*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>390</x>
+      <y>290</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>/view/
+*PrimeFaces*
+*JSF*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>390</x>
+      <y>370</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>/business logic/
+*EJB*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>390</x>
+      <y>490</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>/database/
+*MySQL*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>230</y>
+      <w>440</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>valign=center
+fontsize=18
+lw=3.5
+*Esch technologies*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>620</x>
+      <y>290</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+/hosting/
+*OpenShift*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>620</x>
+      <y>380</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+/build/
+*Maven*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>620</x>
+      <y>470</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>symbol=component
+/VCS/
+*Git*
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>310</x>
+      <y>290</y>
+      <w>70</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>valign=center
+/JEE6/
+**JBoss**
+**AS**</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

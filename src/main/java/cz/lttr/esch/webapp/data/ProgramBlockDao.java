@@ -6,13 +6,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 import cz.lttr.esch.webapp.model.ProgramBlock;
 
-/**
- * DAO for ProgramBlock
- */
 @Stateless
 public class ProgramBlockDao {
+
 	@PersistenceContext(unitName = "esch-webapp-mysql-persistence")
 	private EntityManager em;
 
@@ -36,10 +35,8 @@ public class ProgramBlockDao {
 	}
 
 	public List<ProgramBlock> listAll(Integer startPosition, Integer maxResult) {
-		TypedQuery<ProgramBlock> findAllQuery = em
-				.createQuery(
-						"SELECT DISTINCT p FROM ProgramBlock p LEFT JOIN FETCH p.instructor LEFT JOIN FETCH p.programCategory LEFT JOIN FETCH p.programDay ORDER BY p.id",
-						ProgramBlock.class);
+		TypedQuery<ProgramBlock> findAllQuery = em.createQuery("SELECT p FROM ProgramBlock p",
+				ProgramBlock.class);
 		if (startPosition != null) {
 			findAllQuery.setFirstResult(startPosition);
 		}

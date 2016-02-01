@@ -6,13 +6,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 import cz.lttr.esch.webapp.model.Event;
 
-/**
- * DAO for Event
- */
 @Stateless
 public class EventDao {
+
 	@PersistenceContext(unitName = "esch-webapp-mysql-persistence")
 	private EntityManager em;
 
@@ -36,10 +35,8 @@ public class EventDao {
 	}
 
 	public List<Event> listAll(Integer startPosition, Integer maxResult) {
-		TypedQuery<Event> findAllQuery = em
-				.createQuery(
-						"SELECT DISTINCT e FROM Event e LEFT JOIN FETCH e.eschUser LEFT JOIN FETCH e.eventConfigurations LEFT JOIN FETCH e.instructors LEFT JOIN FETCH e.programDays ORDER BY e.id",
-						Event.class);
+		TypedQuery<Event> findAllQuery = em.createQuery(
+				"SELECT DISTINCT e FROM Event e JOIN FETCH e.eventConfiguration", Event.class);
 		if (startPosition != null) {
 			findAllQuery.setFirstResult(startPosition);
 		}

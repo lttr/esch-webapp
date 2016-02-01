@@ -78,7 +78,7 @@ CREATE TABLE esch_user (
     email             VARCHAR (50) NOT NULL UNIQUE ,
     registration_date DATETIME ,
     lastactivity_date DATETIME ,
-    locked            CHAR (1) ,
+    locked            BOOLEAN NOT NULL DEFAULT 0,
     instructor_id     INT ,
     PRIMARY KEY ( id )
 ) ENGINE=INNODB ;

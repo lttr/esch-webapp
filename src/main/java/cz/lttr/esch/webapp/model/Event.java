@@ -17,6 +17,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -57,8 +58,9 @@ public class Event implements Serializable {
 	@NotEmpty
 	private Date created;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "event", cascade = CascadeType.ALL)
-	private Set<EventConfiguration> eventConfigurations = new HashSet<EventConfiguration>(0);
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "event_configuration")
+	private EventConfiguration eventConfiguration;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "event", cascade = CascadeType.ALL)
 	private Set<ProgramDay> programDays = new HashSet<ProgramDay>(0);
@@ -123,12 +125,12 @@ public class Event implements Serializable {
 		this.created = created;
 	}
 
-	public Set<EventConfiguration> getEventConfigurations() {
-		return this.eventConfigurations;
+	public EventConfiguration getEventConfiguration() {
+		return this.eventConfiguration;
 	}
 
-	public void setEventConfigurations(Set<EventConfiguration> eventConfigurations) {
-		this.eventConfigurations = eventConfigurations;
+	public void setEventConfiguration(EventConfiguration eventConfiguration) {
+		this.eventConfiguration = eventConfiguration;
 	}
 
 	public Set<Instructor> getInstructors() {

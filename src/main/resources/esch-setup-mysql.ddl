@@ -13,18 +13,18 @@ DROP TABLE IF EXISTS esch_user ;
 
 
 CREATE TABLE event (
-    id           INT NOT NULL AUTO_INCREMENT ,
-    name         VARCHAR (40) UNIQUE ,
-    start_date   DATE ,
-    end_date     DATE ,
-    created      DATETIME NOT NULL ,
-    esch_user_id INT ,
+    id                  INT NOT NULL AUTO_INCREMENT ,
+    name                VARCHAR (40) UNIQUE ,
+    start_date          DATE ,
+    end_date            DATE ,
+    created             DATETIME NOT NULL ,
+    esch_user_id        INT ,
+    event_configuration INT NOT NULL ,
     PRIMARY KEY ( id )
 ) ENGINE=INNODB ;
 
 CREATE TABLE event_configuration (
     id                 INT NOT NULL ,
-    event_id           INT NOT NULL ,
     base_time_interval INT ,
     layout             VARCHAR (10) ,
     PRIMARY KEY ( id )
@@ -85,7 +85,7 @@ CREATE TABLE esch_user (
 
 
 ALTER TABLE event ADD FOREIGN KEY (esch_user_id) REFERENCES esch_user(id);
-ALTER TABLE event_configuration ADD FOREIGN KEY (event_id) REFERENCES event(id);
+ALTER TABLE event ADD FOREIGN KEY (event_configuration) REFERENCES event_configuration(id);
 ALTER TABLE event_instructors ADD FOREIGN KEY (event_id) REFERENCES event(id);
 ALTER TABLE event_instructors ADD FOREIGN KEY (instructor_id) REFERENCES instructor(id);
 ALTER TABLE program_block ADD FOREIGN KEY (instructor_id) REFERENCES instructor(id);

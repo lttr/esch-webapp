@@ -51,9 +51,6 @@ public class Instructor implements java.io.Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
 	private Set<ProgramBlock> programBlocks = new HashSet<ProgramBlock>(0);
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor")
-	private Set<EschUser> eschUsers = new HashSet<EschUser>(0);
-
 	public Instructor() {
 	}
 
@@ -103,14 +100,6 @@ public class Instructor implements java.io.Serializable {
 
 	public void setProgramBlocks(Set<ProgramBlock> programBlocks) {
 		this.programBlocks = programBlocks;
-	}
-
-	public Set<EschUser> getEschUsers() {
-		return this.eschUsers;
-	}
-
-	public void setEschUsers(Set<EschUser> eschUsers) {
-		this.eschUsers = eschUsers;
 	}
 
 }

@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,149 +23,137 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "esch_user", catalog = "esch", uniqueConstraints = {
-	@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "login") })
+		@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "login") })
 public class EschUser implements Serializable {
 
-    private static final long serialVersionUID = 5958894701034851018L;
+	private static final long serialVersionUID = 5958894701034851018L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private int id;
 
-    @Column(name = "login", unique = true, nullable = false, length = 50)
-    @NotEmpty
-    @Size(min = 3, max = 50, message = "Login name must contain between 3 and 50 characters")
-    private String login;
+	@Column(name = "login", unique = true, nullable = false, length = 50)
+	@NotEmpty
+	@Size(min = 3, max = 50, message = "Login name must contain between 3 and 50 characters")
+	private String login;
 
-    @Column(name = "password", length = 50)
-    @NotEmpty
-    @Size(min = 3, max = 50, message = "Password must contain between 3 and 50 characters")
-    private String password;
+	@Column(name = "password", length = 50)
+	@NotEmpty
+	@Size(min = 3, max = 50, message = "Password must contain between 3 and 50 characters")
+	private String password;
 
-    @Column(name = "first_name", length = 50)
-    @Size(min = 3, max = 50, message = "First name must contain between 3 and 50 characters")
-    private String firstName;
+	@Column(name = "first_name", length = 50)
+	@Size(min = 3, max = 50, message = "First name must contain between 3 and 50 characters")
+	private String firstName;
 
-    @Column(name = "last_name", length = 50)
-    @Size(min = 3, max = 50, message = "Last name must contain between 3 and 50 characters")
-    private String lastName;
+	@Column(name = "last_name", length = 50)
+	@Size(min = 3, max = 50, message = "Last name must contain between 3 and 50 characters")
+	private String lastName;
 
-    @Column(name = "email", unique = true, nullable = false, length = 50)
-    @NotEmpty
-    @Email(message = "You have insert valid email address")
-    private String email;
+	@Column(name = "email", unique = true, nullable = false, length = 50)
+	@NotEmpty
+	@Email(message = "You have insert valid email address")
+	private String email;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "registration_date", length = 19)
-    @NotEmpty
-    private Date registrationDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "registration_date", length = 19)
+	@NotEmpty
+	private Date registrationDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "lastactivity_date", length = 19)
-    @NotEmpty
-    private Date lastactivityDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "lastactivity_date", length = 19)
+	@NotEmpty
+	private Date lastactivityDate;
 
-    @Column(name = "locked")
-    @NotEmpty
-    private boolean locked = false;
+	@Column(name = "locked")
+	@NotEmpty
+	private boolean locked = false;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "eschUser")
-    private Set<Event> events = new HashSet<Event>(0);
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "eschUser")
+	private Set<Event> events = new HashSet<Event>(0);
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "instructor_id")
-    private Instructor instructor;
+	public EschUser() {
+	}
 
-    public EschUser() {
-    }
+	public int getId() {
+		return this.id;
+	}
 
-    public int getId() {
-	return this.id;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setId(int id) {
-	this.id = id;
-    }
+	public String getLogin() {
+		return this.login;
+	}
 
-    public Instructor getInstructor() {
-	return this.instructor;
-    }
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
-    public void setInstructor(Instructor instructor) {
-	this.instructor = instructor;
-    }
+	public String getPassword() {
+		return this.password;
+	}
 
-    public String getLogin() {
-	return this.login;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setLogin(String login) {
-	this.login = login;
-    }
+	public String getFirstName() {
+		return this.firstName;
+	}
 
-    public String getPassword() {
-	return this.password;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setPassword(String password) {
-	this.password = password;
-    }
+	public String getLastName() {
+		return this.lastName;
+	}
 
-    public String getFirstName() {
-	return this.firstName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public void setFirstName(String firstName) {
-	this.firstName = firstName;
-    }
+	public String getEmail() {
+		return this.email;
+	}
 
-    public String getLastName() {
-	return this.lastName;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public void setLastName(String lastName) {
-	this.lastName = lastName;
-    }
+	public Date getRegistrationDate() {
+		return this.registrationDate;
+	}
 
-    public String getEmail() {
-	return this.email;
-    }
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
 
-    public void setEmail(String email) {
-	this.email = email;
-    }
+	public Date getLastactivityDate() {
+		return this.lastactivityDate;
+	}
 
-    public Date getRegistrationDate() {
-	return this.registrationDate;
-    }
+	public void setLastactivityDate(Date lastactivityDate) {
+		this.lastactivityDate = lastactivityDate;
+	}
 
-    public void setRegistrationDate(Date registrationDate) {
-	this.registrationDate = registrationDate;
-    }
+	public boolean getLocked() {
+		return this.locked;
+	}
 
-    public Date getLastactivityDate() {
-	return this.lastactivityDate;
-    }
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
 
-    public void setLastactivityDate(Date lastactivityDate) {
-	this.lastactivityDate = lastactivityDate;
-    }
+	public Set<Event> getEvents() {
+		return this.events;
+	}
 
-    public boolean getLocked() {
-	return this.locked;
-    }
-
-    public void setLocked(boolean locked) {
-	this.locked = locked;
-    }
-
-    public Set<Event> getEvents() {
-	return this.events;
-    }
-
-    public void setEvents(Set<Event> events) {
-	this.events = events;
-    }
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
 
 }
